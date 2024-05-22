@@ -1,0 +1,44 @@
+[workspace]
+resolver = "2"
+
+members = [
+    "ztclient/common",
+    "ztclient/tester",
+]
+default-members = ["ztclient/tester",]
+
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[workspace.dependencies]
+assert2 = "0.3.14"
+anyhow = "1.0.72"
+bollard = "0.14.0"
+clap = { version = "4.3.8", features = ["derive", "env"] }
+dotenv = "0.15.0"
+env_logger = "0.10.0"
+envy = "0.4"
+futures = "0.3.28"
+futures-core = "0.3.28"
+log = "0.4"
+rand = "0.8.5"
+reqwest = { version = "0.11.18", features = ["json"] }
+rstest = "0.18.2"
+serde = { version = "1.0.164", features = ["derive"] }
+serde_json = "1.0.96"
+similar-asserts = "1.5.0"
+tokio = { version = "1.28.2", features = ["full"] }
+
+[workspace.dependencies.uuid]
+version = "1.8"
+features = [
+    "v4",                # Lets you generate random UUIDs
+    "fast-rng",          # Use a faster (but still sufficiently random) RNG
+    "macro-diagnostics", # Enable better diagnostics for compile-time UUIDs
+]
+
+[profile.release]
+strip = true
+opt-level = "s"
+lto = true
+codegen-units = 1
